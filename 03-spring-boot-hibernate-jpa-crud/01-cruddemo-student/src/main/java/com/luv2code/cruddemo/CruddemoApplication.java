@@ -15,7 +15,7 @@ public class CruddemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner (String[] args) {
         return runner -> {
-            System.out.println("Application is running");
+            System.out.println("Application is running...");
         };
     }
 }
