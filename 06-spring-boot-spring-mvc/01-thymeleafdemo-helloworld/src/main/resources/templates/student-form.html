@@ -15,14 +15,27 @@
     <br> <br>
     Country:
     <select th:field="*{country}">
-        <option th:value="Brazil">Brazil</option>
-        <option th:value="France">France</option>
-        <option th:value="Germany">Germany</option>
-        <option th:value="Argentina">Argentina</option>
-        <option th:value="USA">United States of America</option>
-        <option th:value="Russia">Russia</option>
-        <option th:value="Japan">Japan</option>
+<!--        <option th:value="Brazil">Brazil</option>-->
+<!--        <option th:value="France">France</option>-->
+<!--        <option th:value="Germany">Germany</option>-->
+<!--        <option th:value="Argentina">Argentina</option>-->
+<!--        <option th:value="USA">United States of America</option>-->
+<!--        <option th:value="Russia">Russia</option>-->
+<!--        <option th:value="Japan">Japan</option>-->
+        <option th:each="country : ${countries}" th:value="${country}" th:text="${country}">
+        </option>
     </select>
+
+    <br> <br>
+    Favorite Programming Language:
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Go"> Go</input>-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Java"> Java</input>-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Python"> Python</input>-->
+    <input type="radio" th:field="*{favoriteLanguage}"
+                        th:each="programmingLanguage : ${programmingLanguages}"
+                        th:value="${programmingLanguage}"
+                        th:text="${programmingLanguage}" />
+
     <br> <br>
 </form>
 </body>
