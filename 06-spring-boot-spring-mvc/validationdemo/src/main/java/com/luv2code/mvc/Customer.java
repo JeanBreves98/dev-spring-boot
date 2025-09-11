@@ -1,9 +1,6 @@
 package com.luv2code.mvc;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Customer {
 
@@ -14,13 +11,24 @@ public class Customer {
 
     @Min(value = 0, message = "Must be greater than or equal to 0")
     @Max(value = 10, message = "Must be less than or equal to 10")
-    private int freePasses;
+    @NotNull(message = "Number of free passes is required")
+    private Integer freePasses;
+    @Pattern(regexp = "^[A-Za-z0-9]{5}", message = "Only 5 chars/digits are allowed")
+    private String postalCode;
 
-    public int getFreePasses() {
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public Integer getFreePasses() {
         return freePasses;
     }
 
-    public void setFreePasses(int freePasses) {
+    public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
     }
 

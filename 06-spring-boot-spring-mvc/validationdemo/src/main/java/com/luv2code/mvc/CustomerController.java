@@ -38,6 +38,8 @@ public class CustomerController {
         System.out.println("First name: |" + theCustomer.getFirstName() + "|");
         System.out.println("Last name: |" + theCustomer.getLastName() + "|");
 
+        System.out.println("Binding result: " + theBindingResult.toString());
+
         if (theBindingResult.hasErrors()) {
             return "customer-form";
         } else {
