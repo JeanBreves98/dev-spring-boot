@@ -14,6 +14,7 @@ import java.util.List;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
     @Around("execution(* com.luv2code.aopdemo.service.*.getFortune(..))")
     public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
 
@@ -22,17 +23,30 @@ public class MyDemoLoggingAspect {
         System.out.println("\n==========>>> Executing @Around on method: " + method);
 
         // get begin timestamp
-        long begin = System.currentTimeMillis();
+//        long begin = System.currentTimeMillis();
+        long begin = System.nanoTime();
 
         // now, let's execute the method
-        Object result = theProceedingJoinPoint.proceed();
+        Object result = null;
+
+        try {
+            result = theProceedingJoinPoint.proceed();
+        } catch (Exception exc) {
+
+            // log the exception
+            System.out.println(exc.getMessage());
+
+            // rethrow the exception
+            throw exc;
+        }
 
         // get end timestamp
-        long end = System.currentTimeMillis();
+//        long end = System.currentTimeMillis();
+        long end = System.nanoTime();
 
         // compute duration and display it
         long duration = end - begin;
-        System.out.println("\n=====> Duration: " + duration / 1000.0 + " seconds");
+        System.out.println("\n=====> Duration: " + duration + " nanoseconds");
 
         return result;
     }
